@@ -4,6 +4,7 @@ require 'csv'
 
 keywords = ['salmon','tuna','saba','aji','anago','unagi','tamago','ikura','ebi','tai','tsubugai','buri','hokkigai','engawa','tako','ika','hamachi','kanpachi','iwashi','uni','hotate','akagai','kani','katsuo','kohada','suunoko','ootoro']
 # keywords = ['salmon']
+scroll_amount = 0
 
 # Initalize the Browser
 browser = Watir::Browser.new :chrome, headless: true
@@ -13,6 +14,11 @@ keywords.each do |keyword|
   # Navigate to Page
   browser.goto "https://images.google.com/?q=#{keyword} sushi"
   browser.button(class: 'Tg7LZd').click
+
+  scroll_amount.times do
+    browser.scroll.to :bottom
+  end
+
   images = browser.images(:class => "rg_i")
   images.each do |image|
     image_urls << image.attribute_value("data-src") || image.attribute_value("data-iurl")
