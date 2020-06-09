@@ -2,8 +2,8 @@ require 'watir'
 require 'webdrivers'
 require 'csv'
 
-# keywords = ['salmon','tuna','saba','aji','anago','unagi','tamago','ikura','ebi','tai']
-keywords = ['salmon']
+keywords = ['salmon','tuna','saba','aji','anago','unagi','tamago','ikura','ebi','tai','tsubugai','buri','hokkigai','engawa','tako','ika','hamachi','kanpachi','iwashi','uni','hotate','akagai','kani','katsuo','kohada','suunoko','ootoro']
+# keywords = ['salmon']
 
 # Initalize the Browser
 browser = Watir::Browser.new :chrome, headless: true
