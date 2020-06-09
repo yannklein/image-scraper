@@ -2,7 +2,34 @@ require 'watir'
 require 'webdrivers'
 require 'csv'
 
-keywords = ['salmon','tuna','saba','aji','anago','unagi','tamago','ikura','ebi','tai','tsubugai','buri','hokkigai','engawa','tako','ika','hamachi','kanpachi','iwashi','uni','hotate','akagai','kani','katsuo','kohada','suunoko','ootoro']
+keywords = [
+  {'jp': 'サーモン', 'en': "salmon"},
+  {'jp': 'マグロ', 'en': "tuna"},
+  {'jp': 'さば', 'en': "mackerel"},
+  {'jp': 'アジ', 'en': "spanish mackerel"},
+  {'jp': 'アナゴ', 'en': "sea eel"},
+  {'jp': 'ウナギ', 'en': "eel"},
+  {'jp': '卵', 'en': "egg"},
+  {'jp': 'いくら', 'en': "salmon roe"},
+  {'jp': 'えび', 'en': "shrimp"},
+  {'jp': '鯛', 'en': "sea bream"},
+  {'jp': 'つぶ貝', 'en': "whelk"},
+  {'jp': 'ブリ', 'en': "yellowtail fish"},
+  {'jp': 'ホッキ貝', 'en': "surf clam"},
+  {'jp': '縁側', 'en': "halibut fin"},
+  {'jp': 'たこ', 'en': "octopus"},
+  {'jp': 'イカ', 'en': "squid"},
+  {'jp': 'ハマチ', 'en': "yellowtail fish"},
+  {'jp': 'カンパチ', 'en': "amberjack"},
+  {'jp': 'イワシ', 'en': "sardine"},
+  {'jp': 'ウニ', 'en': "sea urchin"},
+  {'jp': 'ホタテ', 'en': "scallop"},
+  {'jp': '赤貝', 'en': "ark clam"},
+  {'jp': 'かに', 'en': "crab"},
+  {'jp': 'カツオ', 'en': "bonito"},
+  {'jp': '小肌', 'en': "shad"},
+  {'jp': '大トロ', 'en': "fatty tuna"}
+]
 # keywords = ['salmon']
 scroll_amount = 0
 
@@ -12,7 +39,7 @@ browser = Watir::Browser.new :chrome, headless: true
 keywords.each do |keyword|
   image_urls = []
   # Navigate to Page
-  browser.goto "https://images.google.com/?q=#{keyword} sushi"
+  browser.goto "https://images.google.com/?q=#{keyword[:jp]} 寿司"
   browser.button(class: 'Tg7LZd').click
 
   scroll_amount.times do
@@ -25,7 +52,7 @@ keywords.each do |keyword|
   end
   image_urls = image_urls.reject {|url| url. nil?}
 
-  filepath = "csv/#{keyword}.csv"
+  filepath = "csv/#{keyword[:en]}.csv"
 
   CSV.open(filepath, 'wb') do |csv|
     image_urls.each do |url|
