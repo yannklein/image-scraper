@@ -31,7 +31,7 @@ keywords = [
   {'jp': '大トロ', 'en': "fatty tuna"}
 ]
 # keywords = ['salmon']
-scroll_amount = 0
+scroll_amount = 2
 
 # Initalize the Browser
 browser = Watir::Browser.new :chrome, headless: true
